@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title},~{})}">
+  <head>
+    <title>Signup</title>
+  </head>
+
+  <body>
+    <div id="content">
+      <div class="grid grid-cols-12">
+        <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+        <div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+          <!--card-->
+          <div
+            class="bg-blue-100 border-t-[7px] border-l-[7px] border-blue-500 dark:bg-gray-500 block p-6 border border-default rounded-xl"
+          >
+            <!--message-->
+            <div data-th-replace="~{message::messagebox}"></div>
+
+            <h5 class="mb-1 text-2xl font-bold tracking-tight text-center">
+              Signup here
+            </h5>
+            <p class="text-gray-700 dark:text-gray-400 text-center font-medium">
+              Start managing your contacts
+            </p>
+            <!--form-->
+            <form
+              class="mt-3"
+              data-th-action="@{'/do-register'}"
+              method="post"
+              data-th-object="${userForm}"
+              enctype="multipart/form-data"
+              novalidate
+            >
+              <div class="mb-3">
+                <label
+                  for="name"
+                  class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+                >
+                  Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  th:field="*{name}"
+                  class="bg-white dark:bg-gray-300 border border-gray-300 text-gray-500 dark:text-gray-800 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1.5 shadow-xs"
+                  placeholder="xyz"
+                  required
+                />
+                <p
+                  data-th-if="${#fields.hasErrors('name')}"
+                  data-th-errors="*{name}"
+                  class="text-red-400 py-1 px-1 font-medium text-sm"
+                ></p>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+                >
+                  Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  th:field="*{email}"
+                  class="bg-white dark:bg-gray-300 border border-gray-300 text-gray-500 dark:text-gray-800 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1.5 shadow-xs"
+                  placeholder="xyz@gmail.com"
+                />
+                <p
+                  data-th-if="${#fields.hasErrors('email')}"
+                  data-th-errors="*{email}"
+                  class="text-red-400 py-1 px-1 font-medium text-sm"
+                ></p>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="password"
+                  class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+                >
+                  Password</label
+                >
+                <input
+                  type="password"
+                  id="password"
+                  th:field="*{password}"
+                  class="bg-white dark:bg-gray-300 border border-gray-300 text-gray-500 dark:text-gray-800 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1.5 shadow-xs"
+                  placeholder="Xdjhdtu23@"
+                  required
+                />
+                <p
+                  data-th-if="${#fields.hasErrors('password')}"
+                  data-th-errors="*{password}"
+                  class="text-red-400 py-1 px-1 font-medium text-sm"
+                ></p>
+              </div>
+              <div class="mb-3">
+                <label
+                  for="phoneNumber"
+                  class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+                >
+                  Phone Number</label
+                >
+                <input
+                  type="text"
+                  id="phoneNumber"
+                  th:field="*{phoneNumber}"
+                  class="bg-white dark:bg-gray-300 border border-gray-300 text-gray-500 dark:text-gray-800 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1.5 shadow-xs"
+                  placeholder="98********"
+                  required
+                />
+                <p
+                  data-th-if="${#fields.hasErrors('phoneNumber')}"
+                  data-th-errors="*{phoneNumber}"
+                  class="text-red-400 py-1 px-1 font-medium text-sm"
+                ></p>
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="about"
+                  class="block mb-2.5 text-sm font-medium text-heading"
+                >
+                  Write Something about yourself</label
+                >
+                <textarea
+                  id="about"
+                  rows="4"
+                  th:field="*{about}"
+                  class="bg-white dark:bg-gray-300 border border-gray-300 text-sm text-gray-500 dark:text-gray-800 text-md font-semibold rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1.5 shadow-xs"
+                  placeholder="Write here..."
+                ></textarea>
+              </div>
+              <!--image-->
+              <div class="mb-4">
+                <label
+                  class="block mb-2.5 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Contact Image
+                </label>
+
+                <input
+                  id="image_file_input"
+                  type="file"
+                  data-th-field="*{userImage}"
+                  class="mb-2 p-2 block w-full text-sm text-gray-700 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-gray-300 file:text-gray-800 hover:file:bg-gray-400"
+                />
+                <img
+                  class="max-h-52 mx-auto rounded-lg shadow-lg shadow-blue-400"
+                  src=""
+                  id="upload_image_preview"
+                  alt=""
+                />
+              </div>
+              <div class="flex justify-center gap-5">
+                <button
+                  type="submit"
+                  class="px-3 py-2 bg-blue-800 text-white hover:bg-green-600 rounded-xl hover:border-2 border-gray-800 hover:text-gray-900 font-semibold"
+                >
+                  Signup
+                </button>
+                <button
+                  type="reset"
+                  class="px-3 py-2 bg-gray-800 text-white hover:bg-red-400 rounded-xl hover:border-2 border-gray-800 hover:text-gray-900 font-semibold"
+                >
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

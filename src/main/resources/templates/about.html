@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+  <title>About</title>
+</head>
+
+<body>
+  <div id="content">
+    <!--if user is logged in: sidebar-->
+    <div th:if="${loggedInUser}">
+      <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+    <!--if user is logged in -->
+    <section th:if="${loggedInUser}" class="min-h-[85vh] py-20 px-6 sm:px-10 sm:pl-72">
+      <!-- Header -->
+      <div class="max-w-5xl mx-auto text-center">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+          About SmartContact
+        </h1>
+        <p class="mt-6 font-semibold text-lg text-gray-600 dark:text-gray-400">
+          A modern contact management solution designed to simplify contact
+          organization, improve accessibility, and enhance productivity.
+        </p>
+      </div>
+
+      <!-- Story Section -->
+      <div class="flex flex-col lg:flex-row items-center gap-16 max-w-7xl mx-auto py-16">
+        <!-- Image -->
+        <div class="flex justify-center lg:w-1/2">
+          <img src="https://img.freepik.com/free-vector/contact-us-concept-illustration_114360-2299.jpg"
+            class="rounded-2xl shadow-xl w-[320px] sm:w-105 md:w-160 " alt="Contact Us" />
+        </div>
+
+        <!-- Text -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+            Our Story
+          </h2>
+
+          <p class="text-lg text-gray-600 dark:text-gray-400 leading-8 mb-5 font-semibold">
+            SmartContact was developed as a full-stack web application to
+            solve the common problem of scattered and unorganized contact
+            management. In today’s fast-paced digital world, managing personal
+            and professional contacts efficiently is essential for better
+            communication and productivity. This platform provides users with
+            a centralized, secure, and intuitive environment to store,
+            organize, search, update, and manage contact information
+            seamlessly.
+          </p>
+          <div th:if="${loggedInUser}">
+            <a href="/user/profile"
+              class="bg-blue-500 hover:bg-blue-800 text-white px-6 py-3 rounded-xl shadow-lg mt-5">
+              Go to Profile
+            </a>
+          </div>
+          <div th:unless="${loggedInUser}">
+            <a href="/user/profile"
+              class="bg-blue-500 hover:bg-blue-800 text-white px-6 py-3 rounded-xl shadow-lg mt-5">
+              Get started
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mission Vision -->
+
+      <div th:if="${loggedInUser}" class="max-w-3xl mx-auto flex flex-col gap-5 justify-center items-center">
+        <div class="bg-blue-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-blue-600">Our Mission</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To simplify contact management through secure and intuitive
+            technology.
+          </p>
+        </div>
+
+        <div class="bg-green-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-green-600">Our Vision</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To build smart digital solutions that make daily information
+            management effortless.
+          </p>
+        </div>
+      </div>
+
+      <!--Mission Vission public page-->
+      <div th:unless="${loggedInUser}"
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-5 justify-center items-center">
+        <div class="bg-blue-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-blue-600">Our Mission</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To simplify contact management through secure and intuitive
+            technology.
+          </p>
+        </div>
+
+        <div class="bg-green-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-green-600">Our Vision</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To build smart digital solutions that make daily information
+            management effortless.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="max-w-5xl mx-auto mt-24">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          Development Journey
+      </div>
+
+      </h2>
+
+      <div class="space-y-8 flex flex-col justify-center items-center">
+        <div class="border-l-4 border-blue-500 pl-6">
+          <h4 class="font-bold text-xl">Planning</h4>
+          <p class="dark:text-gray-400 font-semibold text-gray-600">
+            Project architecture and database design.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-green-500 pl-6">
+          <h4 class="font-bold text-xl">Development</h4>
+          <p class="dark:text-gray-400 font-semibold text-gray-600">
+            Built using Spring Boot, Thymeleaf, and MySQL.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-6">
+          <h4 class="font-bold text-xl">Deployment Ready</h4>
+          <p class="dark:text-gray-400 font-semibold text-gray-600">
+            Optimized for real-world usage and placements showcase.
+          </p>
+        </div>
+      </div>
+
+
+      <!-- Developer -->
+      <div class="max-w-4xl mx-auto mt-24 text-center dark:bg-gray-800 p-12 rounded-2xl">
+        <h2 class="text-3xl font-bold mb-4">Built By</h2>
+        <p class="dark:text-gray-400 text-lg font-semibold text-gray-600">
+          Developed by a passionate Java Full Stack Developer using Spring
+          Boot to create scalable and secure applications.
+        </p>
+      </div>
+    </section>
+    <!--if user is logged in:public page-->
+    <section th:unless="${loggedInUser}" class="min-h-[85vh] py-12 px-6 sm:px-10 sm:pl-25">
+      <!-- Header -->
+      <div class="max-w-5xl mx-auto text-center">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+          About SmartContact
+        </h1>
+        <p class="mt-6 font-semibold text-lg text-gray-600 dark:text-gray-400">
+          A modern contact management solution designed to simplify contact
+          organization, improve accessibility, and enhance productivity.
+        </p>
+      </div>
+
+      <!-- Story Section -->
+      <div class="flex flex-col lg:flex-row items-center gap-16 max-w-7xl mx-auto py-16">
+        <!-- Image -->
+        <div class="flex justify-center lg:w-1/2">
+          <img src="https://img.freepik.com/free-vector/contact-us-concept-illustration_114360-2299.jpg"
+            class="rounded-2xl shadow-xl w-[320px] sm:w-105 md:w-130 object-contain" alt="Contact Us" />
+        </div>
+
+        <!-- Text -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+            Our Story
+          </h2>
+
+          <p class="text-lg text-gray-600 dark:text-gray-400 leading-8 mb-5 font-semibold">
+            SmartContact was developed as a full-stack web application to
+            solve the common problem of scattered and unorganized contact
+            management. In today’s fast-paced digital world, managing personal
+            and professional contacts efficiently is essential for better
+            communication and productivity. This platform provides users with
+            a centralized, secure, and intuitive environment to store,
+            organize, search, update, and manage contact information
+            seamlessly. Built with modern technologies, SmartContact ensures a
+            smooth user experience with secure authentication, responsive
+            design, and efficient database management.
+          </p>
+          <div th:if="${loggedInUser}">
+            <a href="/user/profile"
+              class="bg-blue-500 hover:bg-blue-800 text-white px-6 py-3 rounded-xl shadow-lg mt-5">
+              Go to Profile
+            </a>
+          </div>
+          <div th:unless="${loggedInUser}">
+            <a href="/user/profile"
+              class="bg-blue-500 hover:bg-blue-800 text-white px-6 py-3 rounded-xl shadow-lg mt-5">
+              Get started
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mission Vision -->
+
+      <div th:if="${loggedInUser}" class="max-w-3xl mx-auto flex flex-col gap-5 justify-center items-center">
+        <div class="bg-blue-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-blue-600">Our Mission</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To simplify contact management through secure and intuitive
+            technology.
+          </p>
+        </div>
+
+        <div class="bg-green-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-green-600">Our Vision</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To build smart digital solutions that make daily information
+            management effortless.
+          </p>
+        </div>
+      </div>
+
+      <!--Mission Vission public page-->
+      <div th:unless="${loggedInUser}"
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-5 justify-center items-center">
+        <div class="bg-blue-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-blue-600">Our Mission</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To simplify contact management through secure and intuitive
+            technology.
+          </p>
+        </div>
+
+        <div class="bg-green-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-400">
+          <h3 class="text-2xl font-bold mb-4 text-green-600">Our Vision</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-lg font-semibold">
+            To build smart digital solutions that make daily information
+            management effortless.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="max-w-5xl mx-auto mt-24">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          Development Journey
+      </div>
+
+      </h2>
+
+      <div class="space-y-8 flex flex-col justify-center items-center">
+        <div class="border-l-4 border-blue-500 pl-6">
+          <h4 class="font-bold text-xl">Planning</h4>
+          <p class="dark:text-gray-400 font-semibold text-gray-600">
+            Project architecture and database design.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-green-500 pl-6">
+          <h4 class="font-bold text-xl">Development</h4>
+          <p class="dark:text-gray-400 font-semibold text-gray-600">
+            Built using Spring Boot, Thymeleaf, and MySQL.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-6">
+          <h4 class="font-bold text-xl">Deployment Ready</h4>
+          <p class="dark:text-gray-400 font-semibold text-gray-600">
+            Optimized for real-world usage and placements showcase.
+          </p>
+        </div>
+      </div>
+
+
+      <!-- Developer -->
+      <div class="max-w-4xl mx-auto mt-24 text-center dark:bg-gray-800 p-12 rounded-2xl">
+        <h2 class="text-3xl font-bold mb-4">Built By</h2>
+        <p class="dark:text-gray-400 text-lg font-semibold text-gray-600">
+          Developed by a passionate Java Full Stack Developer using Spring
+          Boot to create scalable and secure applications.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    console.log("about page");
+  </script>
+</body>
+
+</html>

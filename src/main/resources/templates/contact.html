@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title},~{})}">
+  <head>
+    <title>Contact Us</title>
+  </head>
+
+  <body>
+    <section id="content" class="min-h-screen py-16 px-6">
+      <!-- Heading -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4"
+        >
+          Contact Us
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 leading-8">
+          Have questions or need assistance? Reach out to us anytime. We’re here
+          to help you manage your contacts smarter and faster.
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div
+          class="rounded-2xl shadow-lg p-8 dark:bg-gray-800 bg-blue-100 border border-blue-500"
+        >
+          <h2 class="text-2xl font-semibold text-blue-600 mb-6">
+            Get in Touch
+          </h2>
+
+          <div class="space-y-5 text-gray-700 dark:text-gray-400">
+            <div>
+              <h3 class="font-semibold text-lg">Email</h3>
+              <p>support@smartcontact.com</p>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-lg">Phone</h3>
+              <p>+91 98765 43210</p>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-lg">Address</h3>
+              <p>Bardhaman, West Bengal, India</p>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-lg">Working Hours</h3>
+              <p>Monday - Friday | 9:00 AM - 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div
+          class="rounded-2xl dark:bg-gray-800 shadow-lg p-8 bg-blue-50 border border-blue-500"
+        >
+          <h2 class="text-2xl font-semibold text-blue-600 mb-6">
+            Send a Message
+          </h2>
+
+          <form class="space-y-5">
+            <input
+              type="text"
+              placeholder="Your Name"
+              class="w-full p-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
+            <input
+              type="email"
+              placeholder="Your Email"
+              class="w-full p-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
+            <input
+              type="text"
+              placeholder="Subject"
+              class="w-full p-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
+            <textarea
+              rows="5"
+              placeholder="Your Message"
+              class="w-full p-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title data-th-text="${loggedInUser.name}+'| SCM'">Profile Page</title>
+</head>
+
+<body>
+    <div id="content">
+        <!--if user is logged in: sidebar-->
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+        </div>
+        <div class="sm:pl-64 pt-20">
+            <div class="flex justify-center items-center flex-col">
+                <h1 class="text-3xl text-center mb-5">Hey <span data-th-text="${loggedInUser.name}"></span>,<br>Welcome
+                    to Profile
+                    page
+                </h1>
+                <div class="flex justify-center mb-5">
+                    <img th:src="${loggedInUser.profilePic != null} 
+        ? ${loggedInUser.profilePic}
+        : 'https://ui-avatars.com/api/?name=' + ${loggedInUser.name} + '&background=random&color=fff&size=200'"
+                        class="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover" alt="Profile" />
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg max-w-2xl w-full">
+                    <div class="flex flex-col items-center text-gray-600 dark:text-white">
+                        <h2 class="text-2xl font-semibold mb-2" data-th-text="${loggedInUser.name}">
+                            User Name
+                        </h2>
+                        <p class="mb-2" data-th-text="${loggedInUser.email}">
+                            user.email@gmail.com
+                        </p>
+                        <p class="mb-2" data-th-text="${loggedInUser.phoneNumber}">
+                            9856423178
+                        </p>
+                        <p class="mb-4 text-center" data-th-text="${loggedInUser.about}">
+                            About user
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log("profile page");
+    </script>
+</body>
+
+</html>

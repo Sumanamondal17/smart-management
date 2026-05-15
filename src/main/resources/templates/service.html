@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title},~{})}">
+  <head>
+    <title>Services</title>
+  </head>
+
+  <body>
+    <section id="content" class="min-h-screen py-16 px-6">
+      <!--if user is logged in: sidebar-->
+      <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+      </div>
+      <!-- Heading -->
+      <div
+        th:if="${loggedInUser}"
+        class="text-center max-w-3xl mx-auto mb-14 sm:pl-64 pt-20"
+      >
+        <h1
+          class="text-5xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4"
+        >
+          Our Services
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 leading-8">
+          SmartContact offers powerful tools to simplify contact management,
+          improve organization, and provide a secure digital experience for
+          users.
+        </p>
+      </div>
+      <!--public page-->
+      <div
+        th:unless="${loggedInUser}"
+        class="text-center max-w-3xl mx-auto mb-14"
+      >
+        <h1
+          class="text-5xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4"
+        >
+          Our Services
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 leading-8">
+          SmartContact offers powerful tools to simplify contact management,
+          improve organization, and provide a secure digital experience for
+          users.
+        </p>
+      </div>
+
+      <!-- Service Cards -->
+      <div
+        th:if="${loggedInUser}"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto sm:pl-64 pt-20"
+      >
+        <!-- Card 1 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Secure Authentication
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            User registration, secure login, encrypted passwords, and email
+            verification ensure complete account safety.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Contact Management
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Add, update, delete, and organize contacts efficiently in one
+            centralized platform.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Smart Search
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Quickly locate contacts using advanced search and filtering options.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Cloud Image Upload
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Upload and manage profile images securely with cloud storage
+            integration.
+          </p>
+        </div>
+
+        <!-- Card 5 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">Data Export</h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Export contacts easily for backup, sharing, and data portability.
+          </p>
+        </div>
+
+        <!-- Card 6 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Responsive Dashboard
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Access and manage your contacts seamlessly across desktop, tablet,
+            and mobile devices.
+          </p>
+        </div>
+      </div>
+      <!-- Service Cards public page -->
+      <div
+        th:unless="${loggedInUser}"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto"
+      >
+        <!-- Card 1 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Secure Authentication
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            User registration, secure login, encrypted passwords, and email
+            verification ensure complete account safety.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Contact Management
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Add, update, delete, and organize contacts efficiently in one
+            centralized platform.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Smart Search
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Quickly locate contacts using advanced search and filtering options.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Cloud Image Upload
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Upload and manage profile images securely with cloud storage
+            integration.
+          </p>
+        </div>
+
+        <!-- Card 5 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">Data Export</h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Export contacts easily for backup, sharing, and data portability.
+          </p>
+        </div>
+
+        <!-- Card 6 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-md shadow-blue-400 p-8 hover:shadow-xl hover:border-4 dark:hover:border-blue-100 hover:border-blue-500 transition"
+        >
+          <h2 class="text-3xl font-semibold text-blue-600 mb-4">
+            Responsive Dashboard
+          </h2>
+          <p class="text-gray-600 text-lg dark:text-gray-300 leading-7">
+            Access and manage your contacts seamlessly across desktop, tablet,
+            and mobile devices.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div th:if="${loggedInUser}" class="text-center mt-16 sm:pl-64 pt-20">
+        <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-300 mb-4">
+          Simplify Contact Management Today
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Experience secure, efficient, and modern contact organization with
+          SmartContact.
+        </p>
+        <a
+          href="/user/profile"
+          class="bg-blue-400 text-lg font-bold hover:shadow-2xl hover:shadow-blue-500 dark:hover:shadow-2xl dark:hover:shadow-blue-100 text-gray-900 hover:text-white px-10 py-5 rounded-xl hover:bg-blue-700 transition"
+        >
+          Go to profile
+        </a>
+      </div>
+      <!-- Bottom CTA public page-->
+      <div th:unless="${loggedInUser}" class="text-center mt-16">
+        <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-300 mb-4">
+          Simplify Contact Management Today
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Experience secure, efficient, and modern contact organization with
+          SmartContact.
+        </p>
+        <a
+          href="/register"
+          class="bg-blue-400 text-lg font-bold hover:shadow-2xl hover:shadow-blue-500 dark:hover:shadow-2xl dark:hover:shadow-blue-100 text-gray-900 hover:text-white px-10 py-5 rounded-xl hover:bg-blue-700 transition"
+        >
+          Get Started
+        </a>
+      </div>
+    </section>
+  </body>
+</html>

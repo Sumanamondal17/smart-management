@@ -1,0 +1,57 @@
+<div data-th-fragment="contact">
+
+    <!-- Main modal -->
+    <div id="view_contact_modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full ">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white dark:bg-gray-800 border border-default rounded-lg shadow-sm p-4 md:p-6">
+                <!-- Modal header -->
+                <div
+                    class="flex items-center justify-between  border-default md:pb-2 bg-blue-600 border-2 border-blue-400 rounded-lg">
+                    <div class="flex flex-col w-full justify-center items-center">
+                        <img src="" id="contact_profilePic"
+                            class="w-20 h-20 rounded-full border-2 border-white object-cover shadow-lg shadow-blue-900"
+                            alt="">
+                        <h3 id="contact_name" class="text-3xl font-semibold text-center p-2">
+
+                            Terms of Service
+                        </h3>
+                        <p class="text-center dark:text-gray-300 text-sm font-medium pb-1" id="contact_email"></p>
+                        <span class="text-center" id="contact_favorite"></span>
+
+                    </div>
+
+                </div>
+                <!-- Modal body -->
+                <div class="space-y-4 md:space-y-6 py-4 md:py-6  flex justify-center items-center ">
+                    <table class="border border-blue-600 shadow-md shadow-blue-300 rounded-lg w-1/2 p-6 text-center ">
+                        <tbody class="">
+                            <tr class="border-b-2 border-blue-600 p-5 m-5 ">
+                                <th class="py-4"><i class="fa-solid fa-location-dot"></i></th>
+                                <td class="py-4" id="contact_address"></td>
+                            </tr>
+                            <tr class="border-b-2 border-blue-600 p-5 m-5 ">
+                                <th class="py-4"><i class="fa-solid fa-phone"></i></th>
+                                <td class="py-4" id="contact_phoneNumber"></td>
+                            </tr>
+                            <tr class="border-b-2 border-blue-600 p-5 m-5 ">
+                                <th class="py-4"><i class="fa-solid fa-user"></i></th>
+                                <td class="py-4" id="contact_description"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center justify-center  border-default space-x-4 pt-4 md:pt-5">
+                    <button data-modal-hide="default-modal" type="button" onclick="closeContactModal()"
+                        class="text-white bg-blue-600  hover:bg-blue-800 border border-blue-700 shadow-sm shadow-gray-100 rounded-lg px-4 py-2.5 ">
+                        Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
