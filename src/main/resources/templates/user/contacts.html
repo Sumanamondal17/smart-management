@@ -187,7 +187,7 @@
                         <div class="flex flex-col md:flex-row gap-2">
                           <!-- Delete -->
                           <button
-                            th:onclick="'deleteContact(' + ${c.id} + ')'"
+                            th:onclick="deleteContact([[${c.id}]])"
                             class="p-2 shadow-md shadow-gray-500"
                           >
                             <i class="fa-solid fa-trash"></i>
