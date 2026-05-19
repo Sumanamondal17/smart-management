@@ -1,5 +1,5 @@
 console.log("Contacts.js")
-const baseURL="http://localhost:8080";
+const baseURL = window.location.origin;
 const viewContactModal=document.getElementById("view_contact_modal")
 // options with default values
 const options = {
@@ -33,50 +33,49 @@ function openContactModal(){
 function closeContactModal(){
     contactModal.hide();
 }
-async function loadContactData(id){
+async function loadContactData(el){
+    const id = el.getAttribute("data-id");
     console.log(id);
-    try{
-        const data=await(
-        await fetch(`${baseURL}/api/contacts/${id}`)
-        
-        ).json();
-        console.log(data);
-        document.querySelector('#contact_name').innerHTML=data.name;
-        document.querySelector('#contact_email').innerHTML=data.email;
-        document.querySelector('#contact_address').innerHTML=data.address;
-        document.querySelector('#contact_phoneNumber').innerHTML=data.phoneNumber;
-      
 
-        document.querySelector('#contact_profilePic').src = data.profilePic; 
-        document.querySelector('#contact_description').innerHTML=data.description;
-        const contactFavorite=document.querySelector('#contact_favorite');
+    try{
+        const data = await (await fetch(`${baseURL}/api/contacts/${id}`)).json();
+
+        document.querySelector('#contact_name').innerHTML = data.name;
+        document.querySelector('#contact_email').innerHTML = data.email;
+        document.querySelector('#contact_address').innerHTML = data.address;
+        document.querySelector('#contact_phoneNumber').innerHTML = data.phoneNumber;
+
+        document.querySelector('#contact_profilePic').src = data.profilePic;
+        document.querySelector('#contact_description').innerHTML = data.description;
+
+        const contactFavorite = document.querySelector('#contact_favorite');
+
         if(data.favorite){
-            contactFavorite.innerHTML="<i class='fa-solid fa-heart'></i>";
+            contactFavorite.innerHTML = "<i class='fa-solid fa-heart'></i>";
         }else{
-            contactFavorite.innerHTML="<i class='fa-regular fa-heart'></i>";
+            contactFavorite.innerHTML = "<i class='fa-regular fa-heart'></i>";
         }
+
         openContactModal();
 
     }catch(error){
-        console.log("Error:",error);
+        console.log("Error:", error);
     }
-
 }
 
 //delete contact
-async function deleteContact(id){
-    Swal.fire({
-  title: "Do you want to delete the contact?",
-  icon:"warning",
-  showCancelButton: true,
-  confirmButtonText: "Yes",
- 
-}).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
-    const url=`${baseURL}/user/contacts/delete/`+id;
-    window.location.replace(url);
-  }
-});
+async function deleteContact(el){
+    const id = el.getAttribute("data-id");
 
+    Swal.fire({
+        title: "Do you want to delete the contact?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = `${baseURL}/user/contacts/delete/` + id;
+            window.location.replace(url);
+        }
+    });
 }

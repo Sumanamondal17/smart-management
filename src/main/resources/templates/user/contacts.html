@@ -187,7 +187,8 @@
                         <div class="flex flex-col md:flex-row gap-2">
                           <!-- Delete -->
                           <button
-                            th:onclick="deleteContact([[${c.id}]])"
+                            th:attr="data-id=${c.id}"
+                            onclick="deleteContact(this)"
                             class="p-2 shadow-md shadow-gray-500"
                           >
                             <i class="fa-solid fa-trash"></i>
@@ -204,7 +205,8 @@
 
                           <!-- View -->
                           <button
-                            th:onclick="loadContactData([[${c.id}]])"
+                            th:attr="data-id=${c.id}"
+                            onclick="loadContactData(this)"
                             class="p-2 shadow-md shadow-gray-500"
                           >
                             <i class="fa-regular fa-eye"></i>
