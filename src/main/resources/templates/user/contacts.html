@@ -1,187 +1,275 @@
 <!doctype html>
-<html lang="en" th:replace="~{base::parent(~{::#content},~{::title},~{::script})}">
+<html
+  lang="en"
+  th:replace="~{base::parent(~{::#content},~{::title},~{::script})}"
+>
+  <head>
+    <title>Your Contacts</title>
+  </head>
 
-<head>
-  <title>Your Contacts</title>
-</head>
+  <body>
+    <div id="content">
+      <!--if user is logged in: sidebar-->
+      <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+      </div>
+      <div class="sm:pl-64 pt-20">
+        <div class="">
+          <h1
+            class="text-3xl m-2 font-semibold text-center p-3 shadow-lg shadow-gray-400"
+          >
+            Your All Contacts
+          </h1>
+          <p class="text-center text-lg font-semibold">
+            Here is the contact List
+          </p>
+          <div class="contacts_container p-3">
+            <div
+              class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base"
+            >
+              <div data-th-replace="~{message::messagebox}"></div>
 
-<body>
-  <div id="content">
-    <!--if user is logged in: sidebar-->
-    <div th:if="${loggedInUser}">
-      <div data-th-replace="~{user/sidebar :: sidebar}"></div>
-    </div>
-    <div class="sm:pl-64 pt-20 ">
-      <div class="">
-        <h1 class="text-3xl m-2 font-semibold text-center p-3 shadow-lg shadow-gray-400">
-          Your All Contacts
-        </h1>
-        <p class="text-center text-lg font-semibold">
-          Here is the contact List
-        </p>
-        <div class="contacts_container p-3">
-          <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base">
-            <div data-th-replace="~{message::messagebox}"></div>
+              <div
+                class="flex lg:flex-row gap-2 flex-col justify-between items-center"
+              >
+                <form
+                  data-th-object="${contactSearchForm}"
+                  data-th-action="@{'/user/contacts/search'}"
+                  th:if="${pageContact.totalElements > 0}"
+                >
+                  <div
+                    class="flex p-5 space-x-3 items-center justify-center flex-col gap-3 flex-wrap lg:flex-row"
+                  >
+                    <!--select box-->
 
-            <div class="flex lg:flex-row gap-2 flex-col justify-between items-center">
-              <form data-th-object="${contactSearchForm}" data-th-action="@{'/user/contacts/search'}"
-                th:if="${pageContact.totalElements > 0}">
-                <div class="flex p-5 space-x-3 items-center justify-center flex-col gap-3 flex-wrap lg:flex-row ">
-                  <!--select box-->
-
-                  <select data-th-field="*{field}" id="countries_disabled"
-                    class="border text-md rounded focus:ring-brand focus:border-brand pr-6 py-2 shadow-xs bg-gray-100 dark:bg-gray-700">
-                    <option selected value="">Select By</option>
-                    <option value="name">Name</option>
-                    <option value="email">Email</option>
-                    <option value="phoneNumber">Phone Number</option>
-                  </select>
-                  <label for="input-group-1" class="sr-only">Search</label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                      <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                          d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
-                      </svg>
+                    <select
+                      data-th-field="*{field}"
+                      id="countries_disabled"
+                      class="border text-md rounded focus:ring-brand focus:border-brand pr-6 py-2 shadow-xs bg-gray-100 dark:bg-gray-700"
+                    >
+                      <option selected value="">Select By</option>
+                      <option value="name">Name</option>
+                      <option value="email">Email</option>
+                      <option value="phoneNumber">Phone Number</option>
+                    </select>
+                    <label for="input-group-1" class="sr-only">Search</label>
+                    <div class="relative">
+                      <div
+                        class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+                      >
+                        <svg
+                          class="w-4 h-4 text-body"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-width="2"
+                            d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                          />
+                        </svg>
+                      </div>
+                      <input
+                        type="text"
+                        id="input-group-1"
+                        data-th-field="*{value}"
+                        class="block w-full max-w-96 ps-9 pe-3 py-2 border text-md rounded shadow-xs bg-gray-100 dark:bg-gray-700"
+                        placeholder="Search"
+                      />
                     </div>
-                    <input type="text" id="input-group-1" data-th-field="*{value}"
-                      class="block w-full max-w-96 ps-9 pe-3 py-2 border text-md rounded shadow-xs bg-gray-100 dark:bg-gray-700"
-                      placeholder="Search" />
+                    <button
+                      type="submit"
+                      class="px-3 py-3 bg-blue-700 rounded-md text-white"
+                    >
+                      Search
+                    </button>
                   </div>
-                  <button type="submit" class="px-3 py-3 bg-blue-700 rounded-md text-white">
-                    Search
+                </form>
+                <div
+                  th:if="${pageContact.totalElements > 0}"
+                  class="flex gap-3"
+                >
+                  <button
+                    type="button"
+                    onClick="exportContact()"
+                    class="px-3 py-2 bg-green-700 rounded-md text-white"
+                  >
+                    Export Page
+                  </button>
+                  <button
+                    type="button"
+                    onClick="exportAllContacts()"
+                    class="px-3 py-2 bg-green-700 rounded-md text-white"
+                  >
+                    Export All
                   </button>
                 </div>
-              </form>
-              <div th:if="${pageContact.totalElements > 0}" class="flex gap-3">
-                <button type="button" onClick="exportContact()" class="px-3 py-2 bg-green-700 rounded-md text-white">
-                  Export Page
-                </button>
-                <button type="button" onClick="exportAllContacts()"
-                  class="px-3 py-2 bg-green-700 rounded-md text-white">
-                  Export All
-                </button>
               </div>
-            </div>
-            <p th:if="${pageContact.totalElements == 0}" class="text-center text-3xl font-semibold text-gray-300 py-10">
-              No Contacts Found
-            </p>
-            <div class="overflow-x-auto rounded-xl w-full">
-              <table th:if="${pageContact.totalElements > 0}"
-                class="mt-5 w-full text-sm text-left rtl:text-right dark:bg-gray-700 bg-gray-200">
-                <!-- TABLE HEAD -->
-                <thead class="text-lg shadow-lg shadow-gray-400 border dark:shadow-gray-400">
+              <p
+                th:if="${pageContact.totalElements == 0}"
+                class="text-center text-3xl font-semibold text-gray-300 py-10"
+              >
+                No Contacts Found
+              </p>
+              <div class="overflow-x-auto rounded-xl w-full">
+                <table
+                  th:if="${pageContact.totalElements > 0}"
+                  class="mt-5 w-full text-sm text-left rtl:text-right dark:bg-gray-700 bg-gray-200"
+                >
+                  <!-- TABLE HEAD -->
+                  <thead
+                    class="text-lg shadow-lg shadow-gray-400 border dark:shadow-gray-400"
+                  >
+                    <tr>
+                      <!-- visible -->
+                      <th scope="col" class="px-3 md:px-6 py-3 md:py-4">
+                        Name
+                      </th>
+
+                      <th scope="col" class="px-3 md:px-6 py-3 md:py-4">
+                        Phone
+                      </th>
+
+                      <th scope="col" class="px-3 md:px-6 py-3 md:py-4">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <!-- TABLE BODY -->
+                  <tbody>
+                    <tr
+                      data-th-object="${c}"
+                      data-th-each="c:${pageContact.getContent()}"
+                      class="shadow-sm shadow-gray-400"
+                    >
+                      <!-- NAME + EMAIL UI -->
+                      <td class="px-3 md:px-6 py-3 md:py-4">
+                        <div class="flex items-center gap-3">
+                          <img
+                            onerror="
+                              this.src =
+                                'https://i.pinimg.com/736x/4b/90/5b/4b905b1342b5635310923fd10319c265.jpg'
+                            "
+                            class="w-10 h-10 rounded-full"
+                            data-th-src="@{*{profilePic}}"
+                          />
+
+                          <div>
+                            <!-- NAME -->
+                            <div
+                              class="font-semibold text-lg"
+                              data-th-text="*{name}"
+                            ></div>
+                            <!-- EMAIL BELOW NAME -->
+                            <div
+                              class="text-md font-semibold text-gray-600 dark:text-gray-300 no-export"
+                              data-th-text="*{email}"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <!-- PHONE -->
+                      <td class="px-3 md:px-6 py-3 md:py-4">
+                        <span class="hidden md:inline"
+                          ><i class="fa-solid fa-phone"></i
+                        ></span>
+                        <span data-th-text="*{phoneNumber}"></span>
+                      </td>
+                      <!-- ACTION -->
+                      <td class="px-3 md:px-6 py-3 md:py-4">
+                        <div class="flex flex-col md:flex-row gap-2">
+                          <!-- Delete -->
+                          <button
+                            th:onclick="'deleteContact(' + ${c.id} + ')'"
+                            class="p-2 shadow-md shadow-gray-500"
+                          >
+                            <i class="fa-solid fa-trash"></i>
+                          </button>
+                          <!-- Edit -->
+                          <button>
+                            <a
+                              data-th-href="@{'/user/contacts/view/'+*{id}}"
+                              class="p-2 shadow-md shadow-gray-500"
+                            >
+                              <i class="fa-solid w-6 h-6 fa-pen-to-square"></i>
+                            </a>
+                          </button>
+
+                          <!-- View -->
+                          <button
+                            th:onclick="loadContactData([[${c.id}]])"
+                            class="p-2 shadow-md shadow-gray-500"
+                          >
+                            <i class="fa-regular fa-eye"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- HIDDEN TABLE FOR EXCEL EXPORT -->
+              <table id="export-table" class="hidden">
+                <thead>
                   <tr>
-                    <!-- visible -->
-                    <th scope="col" class="px-3 md:px-6 py-3 md:py-4">Name</th>
-
-                    <th scope="col" class="px-3 md:px-6 py-3 md:py-4">Phone</th>
-
-                    <th scope="col" class="px-3 md:px-6 py-3 md:py-4">Action</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                   </tr>
                 </thead>
 
-                <!-- TABLE BODY -->
                 <tbody>
-                  <tr data-th-object="${c}" data-th-each="c:${pageContact.getContent()}"
-                    class="shadow-sm shadow-gray-400">
-                    <!-- NAME + EMAIL UI -->
-                    <td class="px-3 md:px-6 py-3 md:py-4">
-                      <div class="flex items-center gap-3">
-                        <img onerror="
-                            this.src =
-                              'https://i.pinimg.com/736x/4b/90/5b/4b905b1342b5635310923fd10319c265.jpg'
-                          " class="w-10 h-10 rounded-full" data-th-src="@{*{profilePic}}" />
+                  <tr data-th-each="c:${pageContact.getContent()}">
+                    <td data-th-text="${c.name}"></td>
 
-                        <div>
-                          <!-- NAME -->
-                          <div class="font-semibold text-lg" data-th-text="*{name}"></div>
-                          <!-- EMAIL BELOW NAME -->
-                          <div class="text-md font-semibold text-gray-600 dark:text-gray-300 no-export"
-                            data-th-text="*{email}"></div>
-                        </div>
-                      </div>
-                    </td>
+                    <td data-th-text="${c.email}"></td>
 
-                    <!-- PHONE -->
-                    <td class="px-3 md:px-6 py-3 md:py-4">
-                      <span class="hidden md:inline"><i class="fa-solid fa-phone"></i></span>
-                      <span data-th-text="*{phoneNumber}"></span>
-                    </td>
-                    <!-- ACTION -->
-                    <td class="px-3 md:px-6 py-3 md:py-4">
-                      <div class="flex flex-col md:flex-row gap-2 ">
-                        <!-- Delete -->
-                        <button th:onclick="deleteContact([[${c.id}]])" class="p-2 shadow-md shadow-gray-500">
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <!-- Edit -->
-                        <button>
-                          <a data-th-href="@{'/user/contacts/view/'+*{id}}" class="p-2 shadow-md shadow-gray-500">
-                            <i class="fa-solid w-6 h-6 fa-pen-to-square"></i>
-                          </a>
-                        </button>
-
-                        <!-- View -->
-                        <button th:onclick="loadContactData([[${c.id}]])" class="p-2 shadow-md shadow-gray-500">
-                          <i class="fa-regular fa-eye"></i>
-                        </button>
-                      </div>
-                    </td>
+                    <td data-th-text="${c.phoneNumber}"></td>
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <!-- HIDDEN TABLE FOR EXCEL EXPORT -->
-            <table id="export-table" class="hidden">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                </tr>
-              </thead>
+              <table id="export-all-table" class="hidden">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                <tr data-th-each="c:${pageContact.getContent()}">
-                  <td data-th-text="${c.name}"></td>
+                <tbody>
+                  <tr data-th-each="c:${allContacts}">
+                    <td data-th-text="${c.name}"></td>
 
-                  <td data-th-text="${c.email}"></td>
+                    <td data-th-text="${c.email}"></td>
 
-                  <td data-th-text="${c.phoneNumber}"></td>
-                </tr>
-              </tbody>
-            </table>
-            <table id="export-all-table" class="hidden">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr data-th-each="c:${allContacts}">
-                  <td data-th-text="${c.name}"></td>
-
-                  <td data-th-text="${c.email}"></td>
-
-                  <td data-th-text="${c.phoneNumber}"></td>
-                </tr>
-              </tbody>
-            </table>
-            <!--pagination-->
-            <div th:if="${pageContact.totalElements > 0}"
-              class="pagination-container p-5 flex justify-center items-center">
-              <nav aria-label="Page navigation example">
-                <ul class="flex -space-x-px text-sm">
-                  <li data-th-unless="${pageContact.first}">
-                    <a data-th-href="@{'/user/contacts?size='+${pageSize}+'&page='+${pageContact.number-1}}"
-                      class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium rounded-s-base text-sm px-3 h-10 focus:outline-none">Previous</a>
-                  </li>
-                  <li data-th-each="index:${#numbers.sequence(0,pageContact.totalPages-1)}"
+                    <td data-th-text="${c.phoneNumber}"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--pagination-->
+              <div
+                th:if="${pageContact.totalElements > 0}"
+                class="pagination-container p-5 flex justify-center items-center"
+              >
+                <nav aria-label="Page navigation example">
+                  <ul class="flex -space-x-px text-sm">
+                    <li data-th-unless="${pageContact.first}">
+                      <a
+                        data-th-href="@{'/user/contacts?size='+${pageSize}+'&page='+${pageContact.number-1}}"
+                        class="flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading font-medium rounded-s-base text-sm px-3 h-10 focus:outline-none"
+                        >Previous</a
+                      >
+                    </li>
+                    <li
+                      data-th-each="index:${#numbers.sequence(0,pageContact.totalPages-1)}"
                     >
                       <a
                         data-th-href="@{'/user/contacts?size='+${pageSize}+'&page='+${index}}"
